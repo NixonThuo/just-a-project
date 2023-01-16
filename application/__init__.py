@@ -47,10 +47,14 @@ def translate_text_from_array(textlist, language):
 
 
 def text_to_speech(translated, language, filenumber):
-    tts = gTTS(translated, lang=language, slow=False)
     translatedaudiopath = os.path.join(
         app.root_path, 'static', 'splitranslatedaudio', str(filenumber)+".mp3")
-    tts.save(translatedaudiopath)
+    try:
+        tts = gTTS(translated, lang=language, slow=False)
+        tts.save(translatedaudiopath)
+    except AssertionError:
+        silencesound = AudioSegment.silent(duration=5000)
+        silencesound.export(translatedaudiopath, format="mp3")
     return translatedaudiopath
 
 
@@ -94,7 +98,8 @@ def transcribe_audio(AUDIO_FILE, filenumber):
             originaltext = r.recognize_google(audio)
             print(originaltext)
         except sr.UnknownValueError:
-            originaltext = "Could not understand"
+            print("inaudible speech or could not understand")
+            originaltext = ""
 
         transcribepath = os.path.join(
             app.root_path, 'static', 'splittranscribe', str(filenumber)+".txt")

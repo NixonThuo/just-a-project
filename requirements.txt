@@ -22,6 +22,7 @@ Jinja2==2.11.3
 lazy-object-proxy==1.4.1
 MarkupSafe==1.1.1
 moviepy==1.0.3
+mutagen==1.46.0
 numpy==1.24.1
 Pillow==9.4.0
 proglog==0.1.10
@@ -39,7 +40,7 @@ starlette==0.21.0
 toml==0.10.2
 tomli==2.0.1
 tqdm==4.64.1
-#typed-ast==1.4.0
+typed-ast==1.5.4
 typing_extensions==4.4.0
 tzlocal==2.1
 urllib3==1.26.14
